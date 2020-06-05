@@ -20,7 +20,7 @@ fi
 REPO_GIT_INIT_PATHS="kustomize/dev"
 REPO_ROOT=$(git rev-parse --show-toplevel)
 REPO_URL=${1:-git@github.com:swade1987/gitops-with-kustomize}
-REPO_BRANCH=master
+REPO_BRANCH=skeleton
 TEMP=${REPO_ROOT}/temp
 
 rm -rf ${TEMP} && mkdir ${TEMP}
