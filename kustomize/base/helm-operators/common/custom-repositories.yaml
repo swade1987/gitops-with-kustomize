@@ -1,0 +1,20 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ignored-but-required
+spec:
+  values:
+    configureRepositories:
+      enable: true
+      repositories:
+        - name: bitnami
+          url: https://charts.bitnami.com
+        - name: concourse
+          url: https://concourse-charts.storage.googleapis.com
+        - name: flux
+          url: https://charts.fluxcd.io
+        - name: jetstack
+          url: https://charts.jetstack.io
+        - name: stable
+          url: https://kubernetes-charts.storage.googleapis.com

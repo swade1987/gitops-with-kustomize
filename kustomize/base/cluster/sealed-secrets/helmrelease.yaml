@@ -1,0 +1,38 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  annotations:
+    flux.weave.works/automated: "false"
+    flux.weave.works/tag.chart-image: semver:~v0.12
+  name: sealed-secrets
+  namespace: sealed-secrets
+spec:
+  chart:
+    name: sealed-secrets
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    version: 1.7.5
+  releaseName: sealed-secrets
+
+  values:
+    crd:
+      create: false
+    commandArgs:
+      - --accept-deprecated-v1-data
+    image:
+      repository: eu.gcr.io/mettle-bank/sealed-secrets-controller
+      tag: v0.12.2
+    nodeSelector:
+      node.kubernetes.io/role: critical
+    podAnnotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8080"
+    priorityClassName: mettle-cluster-critical
+    secretName: "sealed-secrets-keypair"
+    serviceAccount:
+      name: sealed-secrets
+    tolerations:
+      - key: node.kubernetes.io/role
+        value: critical
+        operator: Equal
+        effect: NoSchedule

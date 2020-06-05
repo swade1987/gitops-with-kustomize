@@ -1,0 +1,26 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  annotations:
+    flux.weave.works/automated: "false"
+  name: chaoskube
+  namespace: platform-system
+spec:
+  chart:
+    name: chaoskube
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    version: 3.1.3
+  releaseName: chaoskube
+
+  values:
+    dryRun: false
+    excludedDaysOfYear: "Apr1,Dec24,Dec25"
+    excludedWeekdays: "Sat,Sun"
+    labels: "app!=kibana"
+    logFormat: json
+    metrics:
+      enabled: true
+    namespaces: "!kube-system,!cert-manager,!monitoring"
+    rbac:
+      create: true

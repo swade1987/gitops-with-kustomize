@@ -1,0 +1,89 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  annotations:
+    flux.weave.works/automated: "false"
+    flux.weave.works/tag.chart-image: semver:~6.6
+  name: grafana-editable
+  namespace: monitoring
+spec:
+  chart:
+    name: grafana
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    version: 4.6.3
+  releaseName: grafana-editable
+
+  values:
+    image:
+      repository: grafana/grafana
+      tag: 6.7.3
+      pullPolicy: IfNotPresent
+
+    annotations:
+      reloader.stakater.com/auto: "true"
+
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt"
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io: ""
+        prometheus.io/probe: "true"
+      path: /
+
+    resources:
+      requests:
+        cpu: 200m
+        memory: 200Mi
+      limits:
+        cpu: 1
+        memory: 300Mi
+
+    nodeSelector:
+      node.kubernetes.io/role: worker
+
+    plugins:
+    - abhisant-druid-datasource
+    - blackmirror1-singlestat-math-panel
+    - briangann-gauge-panel
+    - btplc-alarm-box-panel
+    - btplc-trend-box-panel
+    - flant-statusmap-panel
+    - grafana-kubernetes-app
+    - grafana-piechart-panel
+    - natel-discrete-panel
+    - natel-plotly-panel
+    - novalabs-annotations-panel
+    - ryantxu-ajax-panel
+    - simpod-json-datasource
+    - vonage-status-panel
+    - yesoreyeram-boomtable-panel
+    - zuburqan-parity-report-panel
+
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - name: prometheus
+          type: prometheus
+          url: "http://prometheus.monitoring.svc.cluster.local:9090"
+          access: proxy
+          isDefault: true
+
+    grafana.ini:
+      auth.anonymous:
+        enabled: true
+        org_role: Admin
+      paths:
+        data: /var/lib/grafana/data
+        logs: /var/log/grafana
+        plugins: /var/lib/grafana/plugins
+        provisioning: /etc/grafana/provisioning
+      analytics:
+        check_for_updates: true
+      log:
+        mode: console
+      grafana_net:
+        url: https://grafana.net
+

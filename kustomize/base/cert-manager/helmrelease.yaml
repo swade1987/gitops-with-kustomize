@@ -1,0 +1,69 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  annotations:
+    flux.weave.works/automated: "false"
+    flux.weave.works/tag.chart-image: semver:~0.13
+    flux.weave.works/tag.cainjector: semver:~0.13
+    flux.weave.works/tag.webhook: semver:~0.13
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  chart:
+    name: cert-manager
+    repository: https://charts.jetstack.io
+    version: v0.13.0
+  releaseName: cert-manager
+
+  values:
+
+    image:
+      repository: quay.io/jetstack/cert-manager-controller
+      tag: v0.13.0
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    resources:
+      requests:
+        cpu: 100m
+        memory: 200Mi
+      limits:
+        cpu: 300m
+        memory: 400Mi
+
+    cainjector:
+      image:
+        repository: quay.io/jetstack/cert-manager-controller
+        tag: v0.13.0
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      resources:
+        requests:
+          cpu: 100m
+          memory: 40Mi
+        limits:
+          cpu: 300m
+          memory: 500Mi
+
+    webhook:
+      image:
+        repository: quay.io/jetstack/cert-manager-controller
+        tag: v0.13.0
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      resources:
+        requests:
+          cpu: 100m
+          memory: 30Mi
+        limits:
+          cpu: 300m
+          memory: 50Mi

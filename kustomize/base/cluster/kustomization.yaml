@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- helmreleases/chaoskube.yaml
+- namespaces/default/ns-wide-psp.yaml
+- namespaces/kube-system/namespace.yaml
+- namespaces/platform-system/namespace.yaml
+- namespaces/platform-system/ns-wide-psp.yaml
+- namespaces/sealed-secrets/namespace.yaml
+- namespaces/sealed-secrets/ns-wide-psp.yaml
+- sealed-secrets/crd.yaml
+- sealed-secrets/helmrelease.yaml

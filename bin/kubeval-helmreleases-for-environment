@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+ENV=$1
+IGNORE_VALUES=false
+KUBE_VERSION=1.17.0
+HELM_VERSION=v3
+FLUX_PATCH_LOCATION=kustomize/${ENV}/flux-patch.yaml
+set -eu
+
+printf "Running hrval against all %s HelmReleases\n" "${ENV}"
+
+mkdir -p /tmp/"${ENV}"
+kustomize build . -o /tmp/"${ENV}"
+rm kustomization.yaml
+hrval /tmp/"${ENV}"/ ${IGNORE_VALUES} ${KUBE_VERSION} ${HELM_VERSION}
