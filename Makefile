@@ -5,7 +5,7 @@ init:
 	brew install k3d
 
 cluster:
-	k3d create cluster gitops
+	k3d create cluster --workers 4 --name gitops
 
 destroy:
 	k3d delete cluster gitops
@@ -13,7 +13,6 @@ destroy:
 install-flux:
 	./scripts/flux-init.sh
 
-.PHONY: check-duplicate-release-name
 check-duplicate-release-name:
 	clear
 	docker run --rm --name check-duplicate-release-name -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/check-duplicate-release-name`"
