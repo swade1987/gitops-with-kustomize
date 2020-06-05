@@ -34,6 +34,7 @@ helm upgrade -i flux fluxcd/flux --wait \
 --set git.branch=${REPO_BRANCH} \
 --set git.path=${REPO_GIT_INIT_PATHS} \
 --set git.pollInterval=1m \
+--set manifestGeneration=true \
 --set registry.pollInterval=1m \
 --set sync.state=secret \
 --set syncGarbageCollection.enabled=true \
@@ -56,16 +57,5 @@ do
   sleep 5
 done
 echo ">>> Github deploy key is ready"
-
-echo ">>> Configuring Flux for ${REPO_URL}"
-helm upgrade -i flux fluxcd/flux --wait \
---set git.url=${REPO_URL} \
---set git.branch=${REPO_BRANCH} \
---set git.path="" \
---set git.pollInterval=1m \
---set registry.pollInterval=1m \
---set sync.state=secret \
---set syncGarbageCollection.enabled=true \
---namespace flux
 
 echo ">>> Cluster bootstrap done!"
