@@ -29,8 +29,7 @@ kustomize
 ├── base                        # base kustomizations             
 │   ├── cert-manager            # logical grouping of resources
 │   │ └── helmreleases          # base Helmreleases (may be layered with kustomisations)
-│   ├── kustomization.yaml      # Kustomization file which pulls in releases and patches, etc
-│   ├── namespace               # Namespace definitions
+│   │ └── kustomization.yaml    # Kustomization file which pulls in releases and patches, etc
 ├── dev                         # Directory per env which pulls from base and extends/overrides helmreleases
 ```
 
