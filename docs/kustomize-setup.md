@@ -44,6 +44,6 @@ spec.targetNamespace: cert-manager
 spec.values.allowNamespace: cert-manager
 ```
 
-For more information on `targetNamespace` I would recommend reading [this](https://docs.fluxcd.io/projects/helm-operator/en/1.0.0-rc9/references/helmrelease-custom-resource.html#helmrelease-custom-resource).
+This setup allows for faster reconciliation of `HelmRelease` manifests.
 
-This setup allows for faster reconciliation of `HelmRelease` manifests.`
+For more information on `targetNamespace` I would recommend reading [this](https://docs.fluxcd.io/projects/helm-operator/en/1.0.0-rc9/references/helmrelease-custom-resource.html#helmrelease-custom-resource).
