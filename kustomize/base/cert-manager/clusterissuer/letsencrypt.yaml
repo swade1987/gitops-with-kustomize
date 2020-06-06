@@ -5,7 +5,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: platform@mettle.co.uk
+    email: steven@stevenwade.co.uk
     privateKeySecretRef:
       name: letsencrypt
     solvers:
