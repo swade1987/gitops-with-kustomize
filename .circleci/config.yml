@@ -3,7 +3,7 @@ version: 2.1
 defaults: &defaults
   working_directory: ~/project
   docker:
-    - image: quay.io/swade1987/kubernetes-toolkit:1.17.2
+    - image: eu.gcr.io/swade1987/kubernetes-toolkit:1.17.2
 
 jobs:
 

@@ -1,5 +1,5 @@
 CURRENT_WORKING_DIR=$(shell pwd)
-TOOLKIT_IMAGE := quay.io/swade1987/kubernetes-toolkit:1.17.2
+TOOLKIT_IMAGE := eu.gcr.io/swade1987/kubernetes-toolkit:1.17.2
 
 init:
 	brew install k3d
