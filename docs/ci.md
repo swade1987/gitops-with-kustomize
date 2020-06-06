@@ -4,7 +4,7 @@ All tasks use the docker container from [https://github.com/swade1987/kubernetes
 
 If you would like changes made to the above image please feel free to open an issue or pull request.
 
-## Local usage
+## 1. Local usage
 
 There are a number of useful `Make` tasks available for you to validate your manifests and overall Kustomize setup.
 
@@ -32,7 +32,7 @@ This uses the policies located [here](https://github.com/swade1987/kubernetes-to
 
 This simply makes sure each of your `kustomization.yaml` files are accurate against the `Kustomize` specification.
 
-## Circle CI
+## 2. Circle CI
 
 The scripts available for execution locally can also be executed as part of CI.
 
