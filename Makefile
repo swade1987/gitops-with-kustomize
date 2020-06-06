@@ -21,6 +21,10 @@ kubeval-environments:
 	clear
 	docker run --rm --name kubeval-environments -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/kubeval-each-environment`"
 
+hrval-environments:
+	clear
+	docker run --rm --name hrval-environments -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/kubeval-each-environment`"
+
 deprek8-check:
 	clear
 	docker run --rm --name kubeval-charts -v $(CURRENT_WORKING_DIR)/kustomize:/kustomize $(TOOLKIT_IMAGE) bash -c "`cat bin/deprek8s-check`"
