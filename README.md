@@ -66,13 +66,15 @@ The above is required to be used as we are using `Kustomize`.
 
 ## Continuous Integration
 
+All tasks use the docker container from [https://github.com/swade1987/kubernetes-toolkit](https://github.com/swade1987/kubernetes-toolkit).
+
+If you would like changes made to the above image please feel free to open an issue or pull request.
+
 ### Local usage
 
 There are a number of useful `Make` tasks available for you to validate your manifests and overall Kustomize setup.
 
 These can be found within the `Makefile` in the root of this repository.
-
-All tasks use the docker container from [https://github.com/swade1987/kubernetes-toolkit](https://github.com/swade1987/kubernetes-toolkit).
 
 ### check-duplicate-release-name
 
