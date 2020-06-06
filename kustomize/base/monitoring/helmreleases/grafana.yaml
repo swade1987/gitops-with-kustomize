@@ -5,7 +5,7 @@ metadata:
   annotations:
     flux.weave.works/automated: "false"
     flux.weave.works/tag.chart-image: semver:~6.6
-  name: grafana-editable
+  name: grafana
   namespace: monitoring
 spec:
   chart:
