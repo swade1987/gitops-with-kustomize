@@ -10,6 +10,16 @@ set -eu
 printf "Running hrval against all %s HelmReleases\n" "${ENV}"
 
 mkdir -p /tmp/"${ENV}"
+
+if [ -s "${FLUX_PATCH_LOCATION}" ]; then
+  echo "Flux patch found @ ${FLUX_PATCH_LOCATION}"
+  sed "s/\$ENV/${ENV}/" ci/kustomization-with-flux-patch-template.yaml > ./kustomization.yaml
+else
+  echo "No flux patch found @ ${FLUX_PATCH_LOCATION}"
+  sed "s/\$ENV/${ENV}/" ci/kustomization-without-flux-patch-template.yaml > ./kustomization.yaml
+fi
+
+
 kustomize build . -o /tmp/"${ENV}"
 rm kustomization.yaml
 hrval /tmp/"${ENV}"/ ${IGNORE_VALUES} ${KUBE_VERSION} ${HELM_VERSION}
