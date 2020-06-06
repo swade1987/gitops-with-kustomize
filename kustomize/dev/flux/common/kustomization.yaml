@@ -3,4 +3,4 @@ kind: Kustomization
 patchesStrategicMerge:
 - secrets/helm-release.yaml
 resources:
-- ../../../../kustomize/base/flux-new/common
+- ../../../base/flux/common

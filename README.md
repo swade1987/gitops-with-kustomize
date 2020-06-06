@@ -36,3 +36,7 @@ A list of pre-requisites can be found [here](docs/pre-reqs.md).
 ## Continuous Integration
 
 A deep-dive into running checks locally and the CircleCI configuration, read [here](docs/ci.md).
+
+## Kustomize directory structure
+
+A deep-dive into the kustomize setup can be found [here](docs/kustomize-setup.md)

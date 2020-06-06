@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - cert-manager
 - cluster
-- flux-new/common
+- flux/common
 - helm-operators
 - ingress
 - monitoring
