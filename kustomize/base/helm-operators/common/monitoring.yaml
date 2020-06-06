@@ -1,0 +1,28 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  annotations:
+    flux.weave.works/automated: "false"
+  name: monitoring-helm-operator
+  namespace: flux
+spec:
+  chart:
+    name: helm-operator
+    repository: https://charts.fluxcd.io
+    version: 1.0.2
+  releaseName: monitoring-helm-operator
+  targetNamespace: monitoring
+  values:
+    image:
+      repository: docker.io/fluxcd/helm-operator
+      tag: 1.1.0
+    allowNamespace: monitoring
+    helm:
+      versions: "v3"
+    rbac:
+      create: true
+    clusterRole:
+      create: true
+    prometheus:
+      enabled: true

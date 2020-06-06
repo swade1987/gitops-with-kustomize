@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+mkdir -p /tmp/kustomize
+
+for env in kustomize/*; do
+  if [ $env == 'kustomize/base' ]; then continue ; fi
+
+  printf "\nChecking %s\n" "${env#*/}"
+
+  kustomize build ${env}  > /tmp/${env}.yaml
+
+  export KUBEVAL_SCHEMA_LOCATION=file:///usr/local/kubeval/schemas
+
+  kubeval --kubernetes-version 1.17.0 --strict --force-color --ignore-missing-schemas /tmp/${env}.yaml
+
+done

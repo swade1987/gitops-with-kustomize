@@ -1,0 +1,33 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  annotations:
+    flux.weave.works/automated: "false"
+    flux.weave.works/tag.chart-image: glob:v1.9.*
+  name: kube-state-metrics
+  namespace: monitoring
+spec:
+  chart:
+    name: kube-state-metrics
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    version: 2.8.4
+  releaseName: kube-state-metrics
+
+  values:
+    image:
+      repository: quay.io/coreos/kube-state-metrics
+      tag: v1.9.5
+    podAnnotations:
+      prometheus.io/port: "8081"
+      prometheus.io/scrape: "true"
+    customLabels:
+      app_name: kube-state-metrics
+    # Taken from https://github.com/kubernetes/kube-state-metrics#resource-recommendation
+    resources:
+      requests:
+        cpu: 0.1
+        memory: 200Mi
+      limits:
+        cpu: 0.1
+        memory: 200Mi

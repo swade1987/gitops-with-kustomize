@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- clusterissuer/letsencrypt.yaml
+- crds.yaml
+- helmrelease.yaml
+- namespace/namespace.yaml
+- namespace/ns-wide-psp.yaml

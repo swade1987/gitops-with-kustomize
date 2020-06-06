@@ -1,0 +1,7 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ignored-but-required
+spec:
+  helmVersion: v3

@@ -1,0 +1,67 @@
+version: 2.1
+
+defaults: &defaults
+  working_directory: ~/project
+  docker:
+    - image: quay.io/swade1987/kubernetes-toolkit:1.17.2
+
+jobs:
+
+  kubeval:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: kubeval environments
+          command: bash -c "`cat bin/kubeval-each-environment`"
+
+  check-for-duplicate-helmrelease-names:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: check for duplicate helmreleases
+          command: bash -c "`cat bin/check-duplicate-release-name`"
+
+  deprek8s-check:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: verify against deprecated API versions
+          command: bash -c "`cat bin/deprek8s-check`"
+
+  hrval-for-dev:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: kubeval helmreleases for dev
+          command: bash -c "bin/kubeval-helmreleases-for-environment dev"
+
+  kustomization-yaml-check:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: kustomize edit fix
+          command: kustomization-yaml-fix kustomize
+      - run:
+          name: test git is clean
+          command: test "$(git status --porcelain | wc -l)" = "0"
+
+workflows:
+  version: 2
+  flow:
+    jobs:
+      - kubeval
+      - check-for-duplicate-helmrelease-names
+      - deprek8s-check
+      - kustomization-yaml-check
+      - hrval-for-dev:
+          filters:
+            branches:
+              ignore:
+                - master

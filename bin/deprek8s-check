@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+mkdir -p /tmp/kustomize
+
+for env in kustomize/*; do
+  if [ $env == 'kustomize/base' ]; then continue ; fi
+
+  printf "\nChecking %s\n" "${env#*/}"
+
+  kustomize build ${env}  > /tmp/${env}.yaml
+
+  conftest test -p /policies/deprecations  /tmp/${env}.yaml
+
+done

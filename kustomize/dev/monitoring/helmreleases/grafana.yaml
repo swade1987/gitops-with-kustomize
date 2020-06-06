@@ -1,0 +1,15 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  values:
+    ingress:
+      hosts:
+      - grafana.monitoring.dev-example.co.uk
+      tls:
+      - secretName: grafana-editable
+        hosts:
+        - grafana.monitoring.dev-example.co.uk
