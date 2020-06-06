@@ -1,26 +1,10 @@
 # GitOps (using Kustomize)
 
-An example repo structure for GitOps with [Kustomize](https://github.com/kubernetes-sigs/kustomize) and [Flux](https://github.com/fluxcd/flux).
+An example repo structure for GitOps with:
 
-## Pre-requisites
-
-### k3d
-
-The demo uses [rancher/k3d](https://github.com/rancher/k3d) to spin up a cluster locally.
-
-The installation guide for `k3d` can be found [here](https://github.com/rancher/k3d#get).
-
-### Kustomize
-
-To validate that your Kustomization's are valid it is recommended to have `Kustomize` installed.
-
-The installation guide for this can be found [here](https://github.com/kubernetes-sigs/kustomize).
-
-### Helm 3
-
-Flux is installed using [Helm 3](https://helm.sh/blog/helm-3-released/).
-
-The installation guide for this can be found [here](https://helm.sh/docs/intro/install/). 
+- [Flux](https://github.com/fluxcd/flux)
+- [Helm Operator](https://github.com/fluxcd/helm-operator)
+- [Kustomize](https://github.com/kubernetes-sigs/kustomize)
 
 ## Directory structure
 
@@ -35,85 +19,20 @@ kustomize
 
 Resources are organised per environment in the `kustomize` directory.
 
-## Configuration
+## Pre-requisites
 
-The configuration of Flux is handled in `scripts/flux-init.sh`.
-
-There are two variables of interest, these are:
-
-```
-REPO_URL=${1:-git@github.com:swade1987/gitops-with-kustomize}
-REPO_BRANCH=master
-```
-
-The above needs to be updated to point to your repository, and the branch you want Flux to reconcile against.
-
-Finally, an important flag to note within the Flux installation is the following:
-
-```
---set manifestGeneration=true \
-```
-
-The above is required to be used as we are using `Kustomize`.
+A list of pre-requisites can be found [here](docs/pre-reqs.md).
 
 ## Setup
 
-1. Create a cluster using `make cluster`
+1. To configure this to work with your repository first read the steps [here](docs/configuration.md).
 
-2. Install [Flux](https://github.com/fluxcd/flux) and the [Helm Operator](https://github.com/fluxcd/helm-operator) using `make install-flux`
+2. Create a cluster using `make cluster`
 
-3. After following the prompts, flux will establish a connection to your repository and start reconciling.
+3. Install [Flux](https://github.com/fluxcd/flux) and the [Helm Operator](https://github.com/fluxcd/helm-operator) using `make install-flux`
+
+4. After following the prompts, flux will establish a connection to your repository and start reconciling.
 
 ## Continuous Integration
 
-All tasks use the docker container from [https://github.com/swade1987/kubernetes-toolkit](https://github.com/swade1987/kubernetes-toolkit).
-
-If you would like changes made to the above image please feel free to open an issue or pull request.
-
-### Local usage
-
-There are a number of useful `Make` tasks available for you to validate your manifests and overall Kustomize setup.
-
-These can be found within the `Makefile` in the root of this repository.
-
-### check-duplicate-release-name
-
-As the name of each `HelmRelease` resources needs to be unique in a cluster this makes sure this is the case.
-
-### kubeval-environments
-
-This runs [kubeval](https://github.com/instrumenta/kubeval) against each `HelmRelease` constructed during the output of `kustomize build` for each environment.
-
-This makes sure that resources being deployed match strictly to the schemas for the version of Kubernetes specified by the toolkit container image.
-
-At present a container image is only available for Kubernetes v1.17.2, if you would like a newer image please open a PR.
-
-### deprek8-check
-
-This uses [conftest](https://github.com/open-policy-agent/conftest) to make sure the resources being applied to the cluster are not using deprecated API versions.
-
-This uses the policies located [here](https://github.com/swade1987/kubernetes-toolkit/tree/master/policies/deprecations).
-
-### kustomization-yaml-fix
-
-This simply makes sure each of your `kustomization.yaml` files are accurate against the `Kustomize` specification.
-
-### Circle CI
-
-The scripts available for execution locally can also be executed as part of CI.
-
-The configuration for these can be seen within `.circle/config.yml`.
-
-### kubeval-helmreleases-for-environment
-
-This script (`bin/kubeval-helmreleases-for-environment`) is expected to only run within CI and not locally due to the way its execute.
-
-It runs [hrval](https://github.com/stefanprodan/hrval-action) against each `HelmRelease` constructed during the output of `kustomize build` for a given environment.
- 
-The steps `hrval` executes for each `HelmRelease` are as follows:
-
-- extracts the chart source with yq
-- downloads the chart from the Helm or Git repository
-- extracts the Helm Release values with yq
-- runs `helm template` for the extracted values
-- validates the YAMLs using [kubeval](https://github.com/instrumenta/kubeval) in strict mode
+A deep-dive into running checks locally and the CircleCI configuration, read [here](docs/ci.md).
