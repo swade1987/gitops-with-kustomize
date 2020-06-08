@@ -70,6 +70,6 @@ The steps the action takes are as follows:
 
 This action is combined with [unsplash/comment-on-pr](https://github.com/unsplash/comment-on-pr) to comment the output to the PR.
 
-The complete action can be found in [.github/workflows/kustomize-diff.yml](.github/workflows/kustomize-diff.yml).
+The complete action can be found in [.github/workflows/kustomize-diff.yml](../.github/workflows/kustomize-diff.yml).
 
 An example output can be seen in [https://github.com/swade1987/gitops-with-kustomize/pull/6](https://github.com/swade1987/gitops-with-kustomize/pull/6).
