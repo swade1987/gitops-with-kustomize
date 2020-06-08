@@ -52,7 +52,7 @@ The steps `hrval` executes for each `HelmRelease` are as follows:
 - runs `helm template` for the extracted values
 - validates the YAMLs using [kubeval](https://github.com/instrumenta/kubeval) in strict mode
 
-## 2. GitHub Actions
+## 3. GitHub Actions
 
 There is one GitHub action that runs as part of CI at present.
 
