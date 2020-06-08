@@ -8,7 +8,7 @@ cluster:
 	k3d create cluster --workers 4 --name gitops
 
 destroy:
-	k3d delete cluster gitops
+	k3d delete --name="gitops"
 
 install-flux:
 	./scripts/flux-init.sh
