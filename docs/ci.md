@@ -51,3 +51,25 @@ The steps `hrval` executes for each `HelmRelease` are as follows:
 - extracts the Helm Release values with yq
 - runs `helm template` for the extracted values
 - validates the YAMLs using [kubeval](https://github.com/instrumenta/kubeval) in strict mode
+
+## 2. GitHub Actions
+
+There is one GitHub action that runs as part of CI at present.
+
+### kustomize-diff
+
+This actions uses [eeveebank/github-action-kustomize-diff](https://github.com/eeveebank/github-action-kustomize-diff).
+
+Shout outs to [@benhartley](https://github.com/benhartley) for implementing this.
+
+The steps the action takes are as follows:
+
+- Store the output of `kustomize build` (for each environment) on the current branch.
+- Store the output of `kustomize build` (for each environment) on the `master` branch.
+- Based on the two outputs above it performs a `git diff` and stores the output in a variable called `escaped_output`.
+
+This action is combined with [unsplash/comment-on-pr](https://github.com/unsplash/comment-on-pr) to comment the output to the PR.
+
+The complete action can be found in [.github/workflows/kustomize-diff.yml](.github/workflows/kustomize-diff.yml).
+
+An example output can be seen in [https://github.com/swade1987/gitops-with-kustomize/pull/6](https://github.com/swade1987/gitops-with-kustomize/pull/6).
