@@ -1,0 +1,23 @@
+name: kustomize-diff
+on:
+  pull_request:
+    paths:
+      - 'kustomize/**'
+
+jobs:
+  kustomize-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - id: kustomize-diff
+        uses: eeveebank/github-action-kustomize-diff@master
+      - id: comment
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: ${{ steps.kustomize-diff.outputs.diff }}
+          check_for_duplicate_msg: false
