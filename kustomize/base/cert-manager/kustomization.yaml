@@ -5,4 +5,3 @@ resources:
 - crds.yaml
 - helmrelease.yaml
 - namespace/namespace.yaml
-- namespace/ns-wide-psp.yaml

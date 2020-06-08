@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
 - helmreleases/ingress-nginx.yaml
 - namespace/namespace.yaml
-- namespace/ns-wide-psp.yaml
