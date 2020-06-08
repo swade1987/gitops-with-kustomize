@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - namespace/namespace.yaml
-- namespace/ns-wide-psp.yaml
 - helmreleases/grafana.yaml
 - helmreleases/kube-state-metrics.yaml
 - helmreleases/metrics-server.yaml
