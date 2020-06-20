@@ -7,3 +7,5 @@ resources:
 - namespaces/sealed-secrets/namespace.yaml
 - sealed-secrets/crd.yaml
 - sealed-secrets/helmrelease.yaml
+- storageclasses/general-purpose-delete.yaml
+- storageclasses/general-purpose-retain.yaml
