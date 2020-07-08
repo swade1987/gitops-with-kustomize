@@ -36,7 +36,7 @@ spec:
 
     cainjector:
       image:
-        repository: quay.io/jetstack/cert-manager-controller
+        repository: quay.io/jetstack/cert-manager-cainjector
         tag: v0.13.0
       strategy:
         rollingUpdate:
@@ -53,7 +53,7 @@ spec:
 
     webhook:
       image:
-        repository: quay.io/jetstack/cert-manager-controller
+        repository: quay.io/jetstack/cert-manager-webhook
         tag: v0.13.0
       strategy:
         rollingUpdate:
