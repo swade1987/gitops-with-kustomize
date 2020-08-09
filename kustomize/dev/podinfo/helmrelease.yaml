@@ -1,10 +1,10 @@
 ---
-# For more on image automation see # see https://docs.fluxcd.io/projects/helm-operator/en/stable/helmrelease-guide/automation/#image-updates
+# For more on image automation see https://docs.fluxcd.io/en/stable/references/helm-operator-integration/#annotations
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   annotations:
     fluxcd.io/automated: "true"
-    filter.fluxcd.io/podinfo: semver:~4.0
+    filter.fluxcd.io/chart-image: semver:~4.0
   name: podinfo
   namespace: podinfo
