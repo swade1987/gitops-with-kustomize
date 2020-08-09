@@ -1,14 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- cert-manager.yaml
+- demo.yaml
 - default.yaml
-- flux-secrets.yaml
-- ingress-nginx.yaml
-- kube-system.yaml
-- monitoring.yaml
-- platform-system.yaml
-- sealed-secrets.yaml
+- podinfo.yaml
 patches:
 - path: custom-repositories.yaml
   target:

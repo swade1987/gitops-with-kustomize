@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  annotations:
-    iam.amazonaws.com/permitted: '.*'
-  name: platform-system

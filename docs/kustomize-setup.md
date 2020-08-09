@@ -7,7 +7,7 @@ The following explains in depth the reasoning behind the structure of the `kusto
 The base directory contains all non-environment specific configuration. This could be:
  
 -  Any manifests which are deployed to every environment (e.g. PSPs, Storage Classes, RBAC etc)
-- `HelmRelease` manifests without the environment specific ingress host names.
+- `HelmRelease` manifests without the environment specific details
 
 ### kustomize/base/cluster
 
@@ -20,12 +20,6 @@ This directory should contain all the default cluster resources, examples includ
 - Storage classes
 
 In this demo repository its only a subset of these things.
-
-### kustomize/base/flux
-
-This directory is a directory to contain additional flux instances you want to have deployed.
-
-Any example of this is a flux instance used to reconcile [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets).
 
 ### kustomize/base/helm-operators
 

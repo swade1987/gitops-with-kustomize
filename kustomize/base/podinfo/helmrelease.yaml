@@ -1,0 +1,17 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  annotations:
+    fluxcd.io/automated: "false"
+  name: podinfo
+  namespace: podinfo
+spec:
+  chart:
+    name: podinfo
+    repository: https://stefanprodan.github.io/podinfo
+    version: 4.0.6
+  releaseName: podinfo
+  values:
+    image:
+      tag: 4.0.3
