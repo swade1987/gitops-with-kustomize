@@ -10,9 +10,9 @@ An example repo structure for GitOps with:
 
 ```
 kustomize
-├── base                        # base kustomizations             
-│   ├── cluster              # logical grouping of resources
-├── dev                         # Directory per env which pulls from base and extends/overrides helmreleases
+├── base                # base kustomizations             
+│   ├── cluster      # logical grouping of resources
+├── dev                 # Directory per env which pulls from base and extends/overrides helmreleases
 ```
 
 Resources are organised per environment in the `kustomize` directory.
