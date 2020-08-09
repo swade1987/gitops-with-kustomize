@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 patchesStrategicMerge:
-- helmreleases/grafana.yaml
+- helmrelease.yaml
 resources:
-- ../../../kustomize/base/monitoring
+- ../../../kustomize/base/podinfo

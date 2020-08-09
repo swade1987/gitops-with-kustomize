@@ -5,10 +5,10 @@ init:
 	brew install k3d
 
 cluster:
-	k3d create cluster --workers 4 --name gitops
+	k3d cluster create --agents 2 gitops
 
 destroy:
-	k3d delete --name="gitops"
+	k3d delete gitops
 
 install-flux:
 	./scripts/flux-init.sh

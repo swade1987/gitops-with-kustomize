@@ -4,20 +4,20 @@ kind: HelmRelease
 metadata:
   annotations:
     flux.weave.works/automated: "false"
-  name: ingress-nginx-helm-operator
+  name: podinfo-helm-operator
   namespace: flux
 spec:
   chart:
     name: helm-operator
     repository: https://charts.fluxcd.io
     version: 1.0.2
-  releaseName: ingress-nginx-helm-operator
-  targetNamespace: ingress-nginx
+  releaseName: podinfo-helm-operator
+  targetNamespace: podinfo
   values:
     image:
       repository: docker.io/fluxcd/helm-operator
       tag: 1.1.0
-    allowNamespace: ingress-nginx
+    allowNamespace: podinfo
     helm:
       versions: "v3"
     rbac:

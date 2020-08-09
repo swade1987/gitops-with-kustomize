@@ -4,20 +4,20 @@ kind: HelmRelease
 metadata:
   annotations:
     flux.weave.works/automated: "false"
-  name: sealed-secrets-helm-operator
+  name: demo-helm-operator
   namespace: flux
 spec:
   chart:
     name: helm-operator
     repository: https://charts.fluxcd.io
     version: 1.0.2
-  releaseName: sealed-secrets-helm-operator
-  targetNamespace: sealed-secrets
+  releaseName: demo-helm-operator
+  targetNamespace: demo
   values:
     image:
       repository: docker.io/fluxcd/helm-operator
       tag: 1.1.0
-    allowNamespace: sealed-secrets
+    allowNamespace: demo
     helm:
       versions: "v3"
     rbac:
