@@ -11,9 +11,7 @@ An example repo structure for GitOps with:
 ```
 kustomize
 ├── base                        # base kustomizations             
-│   ├── cert-manager            # logical grouping of resources
-│   │ └── helmreleases          # base Helmreleases (may be layered with kustomisations)
-│   │ └── kustomization.yaml    # Kustomization file which pulls in releases and patches, etc
+│   ├── cluster              # logical grouping of resources
 ├── dev                         # Directory per env which pulls from base and extends/overrides helmreleases
 ```
 
@@ -39,4 +37,8 @@ A deep-dive into running checks locally and the CircleCI configuration, read [he
 
 ## Kustomize directory structure
 
-A deep-dive into the kustomize setup can be found [here](docs/kustomize-setup.md)
+A deep-dive into the kustomize setup can be found [here](docs/kustomize-setup.md).
+
+## Automatic image upgrades 
+
+An example of automated image upgrades with `HelmReleases` resources can be found [here](docs/automated-image-upgrades.md).
