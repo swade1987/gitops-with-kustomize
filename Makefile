@@ -8,7 +8,7 @@ cluster:
 	k3d cluster create --agents 2 gitops
 
 destroy:
-	k3d delete gitops
+	k3d cluster delete gitops
 
 install-flux:
 	./scripts/flux-init.sh
