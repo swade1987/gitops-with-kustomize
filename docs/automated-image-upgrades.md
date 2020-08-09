@@ -27,3 +27,7 @@ An example of this can be seen below in the flux logs.
 ts=2020-08-09T14:50:02.657447155Z caller=images.go:17 component=sync-loop msg="polling for new images for automated workloads"
 ts=2020-08-09T14:50:02.780931146Z caller=images.go:111 component=sync-loop workload=podinfo:helmrelease/podinfo container=chart-image repo=stefanprodan/podinfo pattern=semver:~4.0 current=stefanprodan/podinfo:4.0.3 info="added update to automation run" new=stefanprodan/podinfo:4.0.6 reason="latest 4.0.6 (2020-06-26 10:47:57.011325031 +0000 UTC) > current 4.0.3 (2020-06-06 11:37:05.183233795 +0000 UTC)"
 ```
+
+## Writing back to Git
+
+After the upgrade has been successful you will see a new commit in GitHub showing the change.
