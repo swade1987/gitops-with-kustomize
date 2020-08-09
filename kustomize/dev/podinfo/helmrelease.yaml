@@ -8,3 +8,7 @@ metadata:
     filter.fluxcd.io/chart-image: semver:~4.0
   name: podinfo
   namespace: podinfo
+  values:
+    image:
+      repository: stefanprodan/podinfo
+      tag: 4.0.3
