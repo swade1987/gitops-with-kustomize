@@ -4,9 +4,9 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-#  annotations:
-#    fluxcd.io/automated: "true"
-#    filter.fluxcd.io/chart-image: semver:~4.0
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:~4.0
   name: podinfo
   namespace: podinfo
 spec:
