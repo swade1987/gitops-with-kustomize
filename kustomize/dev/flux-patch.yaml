@@ -1,0 +1,10 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  values:
+    image:
+      tag: 4.0.6
